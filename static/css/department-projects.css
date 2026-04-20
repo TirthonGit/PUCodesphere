@@ -1,0 +1,218 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: white;
+}
+
+/* ANIMATED BACKGROUND BLOBS */
+
+body {
+    background: #0f172a;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* Background container */
+.background {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+/* Blob base style */
+.blob {
+    position: absolute;
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    filter: blur(140px);
+    opacity: 0.4;
+    animation: float 25s infinite ease-in-out alternate;
+}
+
+/* Individual blob colors + positions */
+
+.blob1 {
+    background: #38bdf8;
+    top: -150px;
+    left: -150px;
+}
+
+.blob2 {
+    background: #6366f1;
+    bottom: -150px;
+    right: -150px;
+    animation-delay: 5s;
+}
+
+.blob3 {
+    background: #ec4899;
+    top: 40%;
+    left: 50%;
+    animation-delay: 10s;
+}
+
+/* Floating animation */
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    50% {
+        transform: translate(80px, -60px) scale(1.2);
+    }
+    100% {
+        transform: translate(-60px, 60px) scale(1);
+    }
+}
+
+/* NAVBAR */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 60px;
+    align-items: center;
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navbar .logo span {
+    color: #38bdf8;
+}
+
+.navbar ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    gap: 30px;
+    margin-right: 50px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: white;
+    transition: 0.3s;
+}
+
+.navbar a:hover {
+    color: #38bdf8;
+}
+
+
+/* DEPARTMENT PROJECTS PAGE */
+
+.department-container {
+    padding: 80px 60px;
+    min-height: 100vh;
+}
+
+/* Header Styling */
+
+.department-header {
+    text-align: center;
+    text-transform: capitalize;
+    margin-bottom: 50px;
+}
+
+.department-header h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.department-header p {
+    color: #cbd5e1;
+    font-size: 15px;
+}
+
+/* Project Grid */
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+/* Project Card */
+
+.project-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    padding: 30px;
+    border-radius: 20px;
+    transition: 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* Card Content */
+
+.project-card h3 {
+    margin-bottom: 12px;
+    font-size: 20px;
+}
+
+.project-card p {
+    color: #cbd5e1;
+    margin-bottom: 15px;
+    font-size: 14px;
+}
+
+.project-card span {
+    font-size: 13px;
+    color: #38bdf8;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+/* Buttons */
+
+.card-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.card-buttons a {
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.08);
+    color: white;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+.card-buttons a:visited {
+    color : #38bdf8;
+    text-decoration: none;
+}
+
+.card-buttons a:hover {
+    background: #38bdf8;
+    color: black;
+}
+
+/* Empty State (optional for later) */
+
+.no-projects {
+    text-align: center;
+    margin-top: 80px;
+    color: #94a3b8;
+    font-size: 16px;
+}

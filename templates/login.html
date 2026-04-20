@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login | Department Portal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+</head>
+<body>
+    <script>
+        setTimeout(function() {
+            let flash = document.querySelector(".flash");
+            if (flash) {
+                flash.style.display = "none";
+            }
+        }, 3000);
+    </script>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash {{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <nav class="navbar">
+        <a href="{{ url_for('home') }}">
+            <div class="logo">PU Code<span>Sphere</span></div>
+        </a>
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('upload') }}">Upload</a></li>
+            <li><a href="{{ url_for('departments') }}">Departments</a></li>
+            <li><a href="{{ url_for('team') }}">Team</a></li>
+        </ul>
+        <ul>
+            <li><a href="{{ url_for('register') }}">Register</a></li>
+        </ul>
+    </nav>
+    <hr>
+    </hr>
+    <div class="auth-container">
+        <div class="auth-card">
+            <h2>Student Login</h2>
+            <form method="POST" action="{{ url_for('login') }}">
+                <div class="input-group">
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="Enter your college email" required>
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" name="password" placeholder="Enter password" required>
+                </div>
+                <button type="submit" class="btn-primary">Login</button>
+                <p class="switch-text">
+                    Don't have an account?
+                    <a href="{{ url_for('register') }}">Register</a>
+                </p>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

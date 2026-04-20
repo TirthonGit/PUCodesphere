@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Department Project Portal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/aboutus.css') }}">
+</head>
+
+<body>
+    <div class="background">
+        <div class="blob blob1"></div>
+        <div class="blob blob2"></div>
+        <div class="blob blob3"></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="logo">
+            <a href="{{ url_for('home') }}">
+                PU Code<span>Sphere</span>
+            </a>
+        </div>
+        
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('upload') }}">Upload</a></li>
+            <li><a href="{{ url_for('departments') }}">Departments</a></li>
+            <li><a href="{{ url_for('team') }}">Team</a></li>
+        </ul>
+        <ul>
+            {% if session.get("user_id") %}
+            <a href="{{ url_for('logout') }}">Logout</a>
+            {% else %}
+            <a href="{{ url_for('login') }}">Login</a>
+            {% endif %}
+        </ul>
+    </nav>
+    <hr>
+    </hr>
+    <section class="aboutus">
+        <h1>About Us</h1>
+        <p>
+            PU's CodeSphere is a student-driven digital platform developed by the B.Tech Computer Science and Engineering - Artificial Intelligence & Machine Learning 
+            (CSE AIML) department. It serves as a centralized hub for showcasing student innovation, technical projects, 
+            and creative problem-solving initiatives across disciplines. CodeSphere is built with the vision of creating a 
+            structured ecosystem where ideas evolve into implementations and implementations become inspirations. 
+            The platform enables students to present their work, share GitHub repositories, and make their projects accessible to peers, faculty, and external audiences. 
+            As students specializing in Artificial Intelligence and Machine Learning, we believe that practical exposure is as important as theoretical knowledge. 
+            PU's CodeSphere reflects our commitment to applying modern technologies to build scalable, secure, and user-centric web applications.
+        </p>
+        <hr></hr>
+        <h4>Our Vision</h4>
+        <p>
+            To establish PU's CodeSphere as a dynamic digital space that promotes innovation, collaboration, and 
+            technical excellence while representing the technological strength of our institution.
+        </p>
+        <hr></hr>
+        <h4>Our Vision</h4>
+        <p>
+            <li>
+                <ul>To provide a professional platform for students to showcase their projects</ul>
+                <ul>To encourage innovation and cross-department collaboration</ul>
+                <ul>To maintain a structured and accessible repository of technical work</ul>
+                <ul>To support academic and professional growth through real-world project exposure</ul>
+            </li>
+        </p>
+    </section>
+    <footer>
+        A Student Project by Tirth Patel and Kirtan Suryawala
+    </footer>
+</body>
+</html>

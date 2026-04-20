@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Project</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/upload.css') }}">
+</head>
+<body>
+    <script>
+        setTimeout(function() {
+            let flash = document.querySelector(".flash");
+            if (flash) {
+                flash.style.display = "none";
+            }
+        }, 3000);
+    </script>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash {{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <div class="background">
+        <div class="blob blob1"></div>
+        <div class="blob blob2"></div>
+        <div class="blob blob3"></div>
+    </div>
+
+    <nav class="navbar">
+        <a href="{{ url_for('home') }}">
+            <div class="logo">PU Code<span>Sphere</span></div>
+        </a>
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('upload') }}">Upload</a></li>
+            <li><a href="{{ url_for('departments') }}">Departments</a></li>
+            <li><a href="{{ url_for('team') }}">Team</a></li>
+        </ul>
+        <ul>
+            {% if session.get("user_id") %}
+                <a href="{{ url_for('logout') }}">Logout</a>
+            {% else %}
+                <a href="{{ url_for('login') }}">Login</a>
+            {% endif %}
+        </ul>
+    </nav>
+    <hr></hr>
+    <div class="upload-container">
+        <div class="upload-card">
+            <h2>Upload Your Project</h2>
+
+            <form method="POST" action="{{ url_for('upload') }}" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>Project Title</label>
+                    <input type="text" name="title" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea name="description" rows="4" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Department</label>
+                    <input type="text" name="department" placeholder="CSE, Mechanical, etc." required>
+                </div>
+
+                <div class="form-group">
+                    <label>GitHub Link</label>
+                    <input type="url" name="github_link">
+                </div>
+
+                <div class="form-group">
+                    <label>Live Project Link</label>
+                    <input type="url" name="live_link">
+                </div>
+                <button type="submit" class="submit-btn">Submit Project</button>
+            </form>
+        </div>
+        <div id="successModal" class="modal">
+            <div class="modal-content">
+                <h3>Project Submitted 🎉</h3>
+                <p>Your project has been successfully uploaded.</p>
+                <button id="closeModal">OK</button>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/upload.js') }}"></script>
+</body>
+</html>

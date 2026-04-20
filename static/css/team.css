@@ -1,0 +1,220 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: white;
+}
+
+/* ANIMATED BACKGROUND BLOBS */
+
+body {
+    background: #0f172a;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* Background container */
+.background {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+/* Blob base style */
+.blob {
+    position: absolute;
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    filter: blur(140px);
+    opacity: 0.4;
+    animation: float 25s infinite ease-in-out alternate;
+}
+
+/* Individual blob colors + positions */
+
+.blob1 {
+    background: #38bdf8;
+    top: -150px;
+    left: -150px;
+}
+
+.blob2 {
+    background: #6366f1;
+    bottom: -150px;
+    right: -150px;
+    animation-delay: 5s;
+}
+
+.blob3 {
+    background: #ec4899;
+    top: 40%;
+    left: 50%;
+    animation-delay: 10s;
+}
+
+/* Floating animation */
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate(80px, -60px) scale(1.2);
+    }
+
+    100% {
+        transform: translate(-60px, 60px) scale(1);
+    }
+}
+
+/* NAVBAR */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 60px;
+    align-items: center;
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navbar .logo span {
+    color: #38bdf8;
+}
+
+.navbar ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    gap: 30px;
+    margin-right: 50px;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: white;
+    transition: 0.3s;
+}
+
+.navbar a:hover {
+    color: #38bdf8;
+}
+
+/* Background Gradient */
+.team-page {
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    min-height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Title */
+.team-title {
+    text-align: center;
+    padding-top: 40px;
+    font-size: 36px;
+    color: white;
+    animation: fadeDown 1s ease-in-out;
+}
+
+/* Container */
+.team-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    padding: 50px;
+}
+
+/* Glassmorphism Card */
+.team-card {
+    width: 260px;
+    padding: 25px;
+    text-align: center;
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 1s ease forwards;
+}
+
+/* Delay animation for multiple cards */
+.team-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.team-card:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.team-card:nth-child(4) {
+    animation-delay: 0.6s;
+}
+
+.team-card:hover {
+    transform: translateY(-10px) scale(1.03);
+    transition: 0.4s ease;
+}
+
+/* Image */
+.team-card img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Social Icons */
+.social-links a {
+    margin: 0 12px;
+    font-size: 22px;
+    color: #00e0ff;
+    transition: 0.3s ease;
+}
+
+.social-links a:hover {
+    color: white;
+}
+
+/* Animations */
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

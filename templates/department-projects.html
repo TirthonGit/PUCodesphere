@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Department Projects</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/department-projects.css') }}">
+</head>
+
+<body>
+    <script>
+        setTimeout(function () {
+            let flash = document.querySelector(".flash");
+            if (flash) {
+                flash.style.display = "none";
+            }
+        }, 3000);
+    </script>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="flash {{ category }}">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <div class="background">
+        <div class="blob blob1"></div>
+        <div class="blob blob2"></div>
+        <div class="blob blob3"></div>
+    </div>
+    <nav class="navbar">
+        <a href="{{ url_for('home') }}">
+            <div class="logo">PU Code<span>Sphere</span></div>
+        </a>
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('upload') }}">Upload</a></li>
+            <li><a href="{{ url_for('departments') }}">Departments</a></li>
+            <li><a href="{{ url_for('team') }}">Team</a></li>
+        </ul>
+        <ul>
+            {% if session.get("user_id") %}
+            <a href="{{ url_for('logout') }}">Logout</a>
+            {% else %}
+            <a href="{{ url_for('login') }}">Login</a>
+            {% endif %}
+        </ul>
+    </nav>
+    <hr></hr>
+    <div class="department-container">
+        <div class="department-header">
+            <h1 id="deptTitle"></h1>
+            <p>Projects in this department</p>
+        </div>
+        <div class="project-grid">
+            <div class="project-card" data-dept="aiml">
+                <h3>Jarvis</h3>
+                <p>An AI assistant for automating tasks.</p>
+                <span>Python</span>
+                <div class="card-buttons">
+                    <a href="#">Live</a>
+                    <a href="https://github.com/Paneerpuff/Jarvis">GitHub</a>
+                </div>
+                <div class="card-buttons">
+                    <a href="{{ project.github_link }}/archive/refs/heads/main.zip" class="down-btn" target="_blank">Download ZIP</a>
+                </div>
+            </div>
+            <div class="project-card" data-dept="ecommerce">
+                <h3>BasketBuzz</h3>
+                <p>Online shopping platform for local Grocery.</p>
+                <span>PHP</span>
+                <div class="card-buttons">
+                    <a href="#">Live</a>
+                    <a href="https://github.com/Paneerpuff/BasketBuzz">GitHub</a>
+                </div>
+            </div>
+            <div class="project-card" data-dept="software">
+                <h3>Bikes With Their Exhaust Sounds</h3>
+                <p>Simulating bike exhaust sounds in a virtual environment.</p>
+                <span>HTML | CSS | JS</span>
+                <div class="card-buttons">
+                    <a href="https://legends-murex.vercel.app">Live</a>
+                    <a href="https://github.com/Paneerpuff/Bikes">GitHub</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const department = params.get("dept");
+
+        document.getElementById("deptTitle").innerText = department + " Engineering";
+
+        const cards = document.querySelectorAll(".project-card");
+
+        cards.forEach(card => {
+            if (card.dataset.dept !== department) {
+                card.style.display = "none";
+            }
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Department Project Portal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+    <script>
+        setTimeout(function () {
+            let flash = document.querySelector(".flash");
+            if (flash) {
+                flash.style.display = "none";
+            }
+        }, 3000);
+    </script>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="flash {{ category }}">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <div class="background">
+        <div class="blob blob1"></div>
+        <div class="blob blob2"></div>
+        <div class="blob blob3"></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="logo">
+            <a href="{{ url_for('home') }}">
+                PU Code<span>Sphere</span>
+            </a>
+        </div>
+        
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('upload') }}">Upload</a></li>
+            <li><a href="{{ url_for('departments') }}">Departments</a></li>
+            <li><a href="{{ url_for('team') }}">Team</a></li>
+        </ul>
+        <ul>
+            {% if session.get("user_id") %}
+            <a href="{{ url_for('logout') }}">Logout</a>
+            {% else %}
+            <a href="{{ url_for('login') }}">Login</a>
+            {% endif %}
+        </ul>
+    </nav>
+    <hr>
+    </hr>
+    <section class="hero">
+        <h1>The PU's Code<span>Sphere</span></h1>
+        <p>Welcome to the Heaven of Projects</p>
+    </section>
+
+    <section class="projects">
+        <h2>Latest Projects</h2>
+
+        <div class="grid">
+            <div class="card">
+                <h3>Jarvis</h3>
+                <p>An AI voice Assistant</p>
+                <span>Python</span>
+                <div class="card-buttons">
+                    <a href="#">Live</a>
+                    <a href="https://github.com/TirthonGit/Jarvis">GitHub</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Bike Lover's</h3>
+                <p>Experience of how the bike roars with different exhausts.</p>
+                <span>HTML | CSS | JS</span>
+                <div class="card-buttons">
+                    <a href="https://legends-murex.vercel.app">Live</a>
+                    <a href="https://github.com/TirthonGit/Bikes">GitHub</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= TEAM SECTION ================= -->
+<section class="team-section">
+    <h2 class="section-title">Meet Our Team</h2>
+
+    <div class="team-container">
+
+        <!-- Member 1 -->
+        <div class="team-card">
+            <img src="static/images/member1.png" alt="Member 1">
+            <h3>SanjuBaba</h3>
+            <p>Developer</p>
+
+            <div class="social-links">
+                <a href="https://github.com/TirthonGit" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/tirth-patel-568403279/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+
+        <!-- Member 2 -->
+        <div class="team-card">
+            <img src="{{ url_for('static', filename='images/member3.jpg') }}" alt="Member Name">
+            <h3>Priyvrat Dwiyedi</h3>
+            <p>Developer</p>
+
+            <div class="social-links">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/priyvratdwivedi89577">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+        </div>
+        <!-- Member 3 -->
+        <div class="team-card">
+            <img src="static/images/member2.jpeg" alt="Member 2">
+            <h3>Kirtan Suryawala</h3>
+            <p>Developer</p>
+
+            <div class="social-links">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/kirtan-suryawala-3ab415290?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <footer>
+        A Student Project by Tirth Patel and Kirtan Suryawala
+    </footer>
+
+</body>
+
+</html>

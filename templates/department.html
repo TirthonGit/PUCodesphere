@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Select Department</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/department.css') }}">
+</head>
+<body>
+    <script>
+        setTimeout(function() {
+            let flash = document.querySelector(".flash");
+            if (flash) {
+                flash.style.display = "none";
+            }
+        }, 3000);
+    </script>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash {{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <div class="background">
+        <div class="blob blob1"></div>
+        <div class="blob blob2"></div>
+        <div class="blob blob3"></div>
+    </div>
+    <nav class="navbar">
+        <a href="{{ url_for('home') }}">
+            <div class="logo">PU Code<span>Sphere</span></div>
+        </a>
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('upload') }}">Upload</a></li>
+            <li><a href="{{ url_for('departments') }}">Departments</a></li>
+            <li><a href="{{ url_for('team') }}">Team</a></li>
+        </ul>
+        <ul>
+            {% if session.get("user_id") %}
+                <a href="{{ url_for('logout') }}">Logout</a>
+            {% else %}
+                <a href="{{ url_for('login') }}">Login</a>
+            {% endif %}
+        </ul>
+    </nav>
+    <hr></hr>
+    <div class="department-container">
+        <div class="department-header">
+            <h1>Select Your Department</h1>
+        </div>
+        <div class="department-grid">
+            <a href="{{ url_for('department_projects', dept='aiml') }}" class="department-card">
+                <h3>AI/ML Projects</h3>
+                <p>Artificial Intelligence and Machine Learning projects</p>
+            </a>
+            <a href="{{ url_for('department_projects', dept='cybersecurity') }}" class="department-card">
+                <h3>Cybersecurity Projects</h3>
+                <p>Network security, data protection, and digital forensics projects</p>
+            </a>
+            <a href="{{ url_for('department_projects', dept='software') }}" class="department-card">
+                <h3>Software Development Projects</h3>
+                <p>Web, mobile, and desktop applications</p>
+            </a>
+            <a href="{{ url_for('department_projects', dept='game') }}" class="department-card">
+                <h3>Game Development Projects</h3>
+                <p>Video games, interactive entertainment, and game design projects</p>
+            </a>
+            <a href="{{ url_for('department_projects', dept='ecommerce') }}" class="department-card">
+                <h3>E-Commerce Projects</h3>
+                <p>Online shopping platforms and e-commerce solutions</p>
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>
